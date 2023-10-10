@@ -66,7 +66,7 @@ func getRobotServerByName(c robotclient.Client, node *corev1.Node) (server *mode
 		return nil, fmt.Errorf("%s: rate limit exceeded - next try at %q", op, hcops.TimeOfNextPossibleAPICall().String())
 	}
 
-	klog.Infof("getRobotServerByName(): name=%q", name)
+	klog.Infof("getRobotServerByName(): name=%q", node.Name)
 
 	serverList, err := c.ServerGetList()
 	if err != nil {
