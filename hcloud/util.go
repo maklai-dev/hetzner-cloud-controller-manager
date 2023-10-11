@@ -74,6 +74,8 @@ func getRobotServerByName(c robotclient.Client, node *corev1.Node) (server *mode
 		return nil, fmt.Errorf("%s: %w", op, err)
 	}
 
+	klog.Infof("getRobotServerByName(): serverList=%+v", serverList)
+
 	for i, s := range serverList {
 		sname_arr := strings.Split(s.Name, "/")
 
@@ -95,11 +97,11 @@ func getRobotServerByName(c robotclient.Client, node *corev1.Node) (server *mode
 				server.ServerIP = sip
 			}
 
-			// klog.Infof("getRobotServerByName(): server=%+v", server)
-
 			break
 		}
 	}
+
+	klog.Infof("getRobotServerByName(): server=%+v", server)
 
 	return server, nil
 }
